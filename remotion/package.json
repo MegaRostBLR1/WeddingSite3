@@ -1,0 +1,22 @@
+{
+  "name": "wedding-site3-remotion",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts WeddingReel out/wedding-reel.mp4"
+  },
+  "dependencies": {
+    "@remotion/cli": "latest",
+    "@remotion/player": "latest",
+    "@remotion/renderer": "latest",
+    "remotion": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "typescript": "latest"
+  }
+}
