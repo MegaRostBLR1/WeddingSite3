@@ -1,6 +1,11 @@
 (() => {
   'use strict';
 
+  const productionStyles = document.createElement('link');
+  productionStyles.rel = 'stylesheet';
+  productionStyles.href = 'css/production-fixes.css';
+  document.head.appendChild(productionStyles);
+
   const nav = document.querySelector('#nav');
   const burger = document.querySelector('#burger');
   const navLinks = document.querySelector('#navLinks');
@@ -81,7 +86,6 @@
   window.addEventListener('scroll', updateNav, { passive: true });
   updateNav();
 
-  // Countdown
   const target = new Date('2026-09-26T15:00:00+03:00').getTime();
   const countdownIds = { days: 'cd-d', hours: 'cd-h', minutes: 'cd-m', seconds: 'cd-s' };
   const countdown = document.querySelector('.countdown');
@@ -118,7 +122,6 @@
   updateCountdown();
   if (target > Date.now()) countdownTimer = window.setInterval(updateCountdown, 1000);
 
-  // Scroll reveal
   const revealItems = document.querySelectorAll('.reveal, .tl-item');
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries, instance) => {
@@ -134,7 +137,7 @@
     revealItems.forEach((item) => item.classList.add('visible'));
   }
 
-  // RSVP demo interaction. Replace this handler with an API request when backend is connected.
+  // RSVP demo interaction intentionally unchanged: no backend submission is added here.
   const form = document.querySelector('#rsvpForm');
   const success = document.querySelector('#rsvpSuccess');
   const again = document.querySelector('#againBtn');
