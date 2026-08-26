@@ -9,28 +9,26 @@
   const updateNav = () => {
     if (!nav) return;
     nav.classList.toggle('scrolled', window.scrollY > 60);
-
-    let current = '';
-    sections.forEach((id) => {
-      const section = document.getElementById(id);
-      if (section && window.scrollY + 200 >= section.offsetTop) current = id;
-    });
-
-    navLinks?.querySelectorAll('a').forEach((link) => {
-      link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-    });
   };
 
   const closeMenu = () => {
     nav?.classList.remove('open');
     document.body.classList.remove('menu-open');
     burger?.setAttribute('aria-expanded', 'false');
+    burger?.setAttribute('aria-label', 'Открыть меню');
+  };
+
+  const openMenu = () => {
+    nav?.classList.add('open');
+    document.body.classList.add('menu-open');
+    burger?.setAttribute('aria-expanded', 'true');
+    burger?.setAttribute('aria-label', 'Закрыть меню');
   };
 
   burger?.addEventListener('click', () => {
-    const isOpen = nav?.classList.toggle('open') ?? false;
-    document.body.classList.toggle('menu-open', isOpen);
-    burger.setAttribute('aria-expanded', String(isOpen));
+    const isOpen = burger.getAttribute('aria-expanded') === 'true';
+    if (isOpen) closeMenu();
+    else openMenu();
   });
 
   navLinks?.querySelectorAll('a').forEach((link) => {
@@ -41,18 +39,60 @@
     if (event.key === 'Escape') closeMenu();
   });
 
+  const updateActiveNav = (id) => {
+    navLinks?.querySelectorAll('a').forEach((link) => {
+      const isActive = link.getAttribute('href') === `#${id}`;
+      link.classList.toggle('active', isActive);
+      if (isActive) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  };
+
+  if ('IntersectionObserver' in window) {
+    const navObserver = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+      if (visible[0]) updateActiveNav(visible[0].target.id);
+    }, {
+      rootMargin: '-20% 0px -65% 0px',
+      threshold: [0.1, 0.25, 0.5, 0.75],
+    });
+
+    sections.forEach((id) => {
+      const section = document.getElementById(id);
+      if (section) navObserver.observe(section);
+    });
+  } else {
+    const updateActiveNavFallback = () => {
+      let current = sections[0];
+      sections.forEach((id) => {
+        const section = document.getElementById(id);
+        if (section && window.scrollY + window.innerHeight * 0.3 >= section.offsetTop) current = id;
+      });
+      updateActiveNav(current);
+    };
+
+    window.addEventListener('scroll', updateActiveNavFallback, { passive: true });
+    updateActiveNavFallback();
+  }
+
   window.addEventListener('scroll', updateNav, { passive: true });
   updateNav();
 
   // Countdown
   const target = new Date('2026-09-26T15:00:00+03:00').getTime();
   const countdownIds = { days: 'cd-d', hours: 'cd-h', minutes: 'cd-m', seconds: 'cd-s' };
+  const countdown = document.querySelector('.countdown');
+  let countdownTimer = null;
 
   const pad = (value) => String(value).padStart(2, '0');
 
   const updateCountdown = () => {
     const diff = target - Date.now();
-    const values = diff <= 0
+    const expired = diff <= 0;
+    const values = expired
       ? { days: 0, hours: 0, minutes: 0, seconds: 0 }
       : {
           days: Math.floor(diff / 86400000),
@@ -65,10 +105,18 @@
       const element = document.getElementById(id);
       if (element) element.textContent = key === 'days' ? String(values[key]) : pad(values[key]);
     });
+
+    if (expired) {
+      countdown?.setAttribute('aria-label', 'Свадебный день уже наступил');
+      if (countdownTimer !== null) {
+        window.clearInterval(countdownTimer);
+        countdownTimer = null;
+      }
+    }
   };
 
   updateCountdown();
-  const countdownTimer = window.setInterval(updateCountdown, 1000);
+  if (target > Date.now()) countdownTimer = window.setInterval(updateCountdown, 1000);
 
   // Scroll reveal
   const revealItems = document.querySelectorAll('.reveal, .tl-item');
@@ -140,5 +188,7 @@
     document.querySelector('#fname')?.focus();
   });
 
-  window.addEventListener('pagehide', () => window.clearInterval(countdownTimer));
+  window.addEventListener('pagehide', () => {
+    if (countdownTimer !== null) window.clearInterval(countdownTimer);
+  });
 })();
