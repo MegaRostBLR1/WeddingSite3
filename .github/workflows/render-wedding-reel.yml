@@ -1,0 +1,28 @@
+name: Render Wedding Reel
+
+on:
+  push:
+    branches: [feature/remotion-reels]
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: remotion
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: remotion/package.json
+      - run: npm install
+      - run: npx remotion browser ensure
+      - run: npm run render
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wedding-reel-9x16
+          path: remotion/out/wedding-reel.mp4
+          retention-days: 14
