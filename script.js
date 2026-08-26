@@ -6,6 +6,7 @@ const sections = ['story', 'timeline', 'location', 'dresscode', 'rsvp'];
 
 function setMenuState(isOpen) {
     nav.classList.toggle('open', isOpen);
+    document.body.classList.toggle('menu-open', isOpen);
     burger.setAttribute('aria-expanded', String(isOpen));
     burger.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
 }
@@ -26,6 +27,14 @@ navLinks.querySelectorAll('a').forEach((link) =>
     link.addEventListener('click', () => setMenuState(false))
 );
 
+// Close the mobile menu with Escape.
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && nav.classList.contains('open')) {
+        setMenuState(false);
+        burger.focus();
+    }
+});
+
 function updateActiveLink() {
     let current = '';
 
@@ -41,14 +50,12 @@ function updateActiveLink() {
     });
 }
 
-// The logo previously used href="#" with inline JS. Make it a real navigation link.
 const navLogo = nav.querySelector('.nav-logo');
 if (navLogo) {
     navLogo.href = '#hero';
     navLogo.removeAttribute('onclick');
 }
 
-// Make the map CTA functional without changing the RSVP flow.
 const mapButton = document.querySelector('.loc-info .btn');
 if (mapButton) {
     mapButton.href = 'https://www.openstreetmap.org/?mlat=55.678&mlon=37.28#map=14/55.678/37.28';
@@ -109,7 +116,6 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal, .tl-item').forEach((element) => observer.observe(element));
 
-// Fallback for elements that are already visible when the page finishes loading.
 function triggerReveals() {
     document.querySelectorAll('.reveal, .tl-item').forEach((element) => {
         const rect = element.getBoundingClientRect();
@@ -130,7 +136,6 @@ if (document.readyState === 'complete') {
 }
 
 // ---------- ACCESSIBILITY ----------
-// Respect users who request reduced motion without changing the normal visual design.
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const reducedMotionStyle = document.createElement('style');
     reducedMotionStyle.textContent = `
@@ -209,8 +214,6 @@ document.getElementById('againBtn').addEventListener('click', () => {
 });
 
 // ---------- PRIVACY-FRIENDLY PAGE VIEW ----------
-// Keep only the lightweight page-view event. Do not record keystrokes,
-// cursor paths, DOM text, click heatmaps or full rrweb sessions.
 (function initializePageView() {
     try {
         fetch('/api/page-views', {
