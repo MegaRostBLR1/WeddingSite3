@@ -8,11 +8,15 @@
   <meta property="og:title" content="Анна & Михаил — Свадьба">
   <meta property="og:description" content="26 сентября 2026 года · Усадьба «Оливковая роща»">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/public/images/inputs/1787488651534_vu8b8xrul.jpg">
+  <meta property="og:image:alt" content="Анна и Михаил — свадебное приглашение">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <title>Анна & Михаил — Свадьба</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/assets.css">
 </head>
 <body>
 <nav id="nav" aria-label="Основная навигация">
@@ -50,6 +54,7 @@
     <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-label">минут</div></div>
     <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-label">секунд</div></div>
   </div>
+  <p class="sr-only" id="countdownStatus" aria-live="polite"></p>
 </section>
 
 <section id="story" aria-labelledby="story-title">
@@ -58,7 +63,7 @@
     <h2 class="sec-title reveal" id="story-title">Два сердца — одна судьба</h2>
     <p class="sec-sub reveal">Мы прошли долгий путь друг к другу — и теперь хотим разделить самый важный день нашей жизни с вами.</p>
     <div class="story-grid">
-      <div class="story-img reveal"><img src="https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1787488650260_eghegghmp.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODc0ODg2NTAyNjBfZWdoZWdnaG1wLmpwZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODc0ODg2NTksImV4cCI6MTgxOTAyNDY1OX0.mELfBUZhqHccH6OOQ9M1oN5iD9hnZFzTKjkD8o6PRCw" alt="Обручальные кольца на пригласительной открытке с оливковой ветвью" loading="lazy" decoding="async"></div>
+      <div class="story-img reveal"><img src="https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/public/images/inputs/1787488650260_eghegghmp.jpg" alt="Обручальные кольца на пригласительной открытке с оливковой ветвью" loading="lazy" decoding="async"></div>
       <div class="story-text reveal"><h3>Дорогие родные и друзья!</h3><p>Пять лет назад случайная встреча в маленькой кофейне изменила нашу жизнь навсегда. С тех пор мы вместе встречаем рассветы, путешествуем, мечтаем — и наконец решили сказать друг другу самое главное «да».</p><p>Мы будем счастливы видеть вас на нашей свадьбе — в кругу самых близких людей, среди оливковых ветвей, тёплого света и искренней любви.</p><p class="story-sig">С любовью, Анна и Михаил</p></div>
     </div>
   </div>
@@ -88,6 +93,7 @@
 <section class="rsvp-sec" id="rsvp" aria-labelledby="rsvp-title"><p class="sec-eyebrow reveal">Ждём вас</p><h2 class="sec-title reveal" id="rsvp-title">Подтвердите присутствие</h2><p class="sec-sub reveal">Пожалуйста, заполните анкету до 1 сентября 2026 года.</p><div class="rsvp-card reveal"><form id="rsvpForm" novalidate><div class="field"><label for="fname">Имя и фамилия *</label><input type="text" id="fname" placeholder="Например: Ирина Соколова" autocomplete="name" aria-describedby="nameError" required><div class="err-msg" id="nameError">Пожалуйста, укажите ваше имя</div></div><div class="field"><label for="fphone">Телефон *</label><input type="tel" id="fphone" placeholder="+7 (___) ___-__-__" autocomplete="tel" aria-describedby="phoneError" required><div class="err-msg" id="phoneError">Укажите корректный номер телефона</div></div><fieldset class="field"><legend class="field-label">Сможете ли вы присутствовать? *</legend><div class="radio-row" role="radiogroup" aria-describedby="attendErr"><div class="chip"><input type="radio" name="attend" id="a-yes" value="yes"><label for="a-yes">С радостью приду</label></div><div class="chip"><input type="radio" name="attend" id="a-pair" value="pair"><label for="a-pair">Придём вдвоём</label></div><div class="chip"><input type="radio" name="attend" id="a-no" value="no"><label for="a-no">Не смогу</label></div></div><div class="err-msg" id="attendErr">Выберите один из вариантов</div></fieldset><div class="field"><label for="fdrink">Предпочтения по напиткам</label><select id="fdrink"><option value="">— выберите —</option><option>Вино белое</option><option>Вино красное</option><option>Шампанское</option><option>Крепкие напитки</option><option>Безалкогольное</option></select></div><div class="field"><label for="fwish">Пожелание молодожёнам</label><textarea id="fwish" rows="3" placeholder="Тёплые слова для нас…"></textarea></div><button type="submit" class="btn btn-solid rsvp-submit">Отправить ответ</button></form><div class="rsvp-success" id="rsvpSuccess"><div class="script">Спасибо!</div><p>Ваш ответ получен. Мы очень ждём встречи с вами 26 сентября 2026 года! 🕊️</p><button class="btn btn-solid" id="againBtn" type="button">Заполнить ещё раз</button></div></div></section>
 
 <footer><div class="script">Анна &amp; Михаил</div><p>26 сентября 2026 · Усадьба «Оливковая роща»</p><p class="small">С любовью сделано для наших дорогих гостей</p></footer>
-<script src="js/app.js" defer></script>
+<script src="js/config.js" defer></script>
+<script type="module" src="js/app.js"></script>
 </body>
 </html>
