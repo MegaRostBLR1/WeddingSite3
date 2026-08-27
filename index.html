@@ -2,1006 +2,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Свадебное приглашение Анны и Михаила — 26 сентября 2026 года.">
     <title>Анна &amp; Михаил — Свадьба</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Montserrat:wght@300;400;500&amp;family=Great+Vibes&amp;display=swap"
-          rel="stylesheet">
-    <style>
-        :root {
-            --cream: #f4efe4;
-            --cream-2: #ece5d4;
-            --paper: #faf7ef;
-            --olive: #7c8354;
-            --olive-dark: #5d6340;
-            --olive-deep: #464b30;
-            --gold: #b9964f;
-            --gold-light: #d4b878;
-            --ink: #4a4a3d;
-            --shadow: 0 20px 60px rgba(70, 75, 48, .15);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box
-        }
-
-        html {
-            scroll-behavior: smooth
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: var(--cream);
-            color: var(--ink);
-            overflow-x: hidden;
-            line-height: 1.7;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 500;
-            color: var(--olive-deep)
-        }
-
-        .script {
-            font-family: 'Great Vibes', cursive;
-            font-weight: 400
-        }
-
-        /* ---------- NAV ---------- */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px 6vw;
-            transition: background .4s, box-shadow .4s, padding .4s;
-        }
-
-        nav.scrolled {
-            background: rgba(250, 247, 239, .94);
-            backdrop-filter: blur(8px);
-            box-shadow: 0 4px 24px rgba(70, 75, 48, .1);
-            padding: 12px 6vw
-        }
-
-        .nav-logo {
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.8rem;
-            color: var(--paper);
-            text-decoration: none;
-            transition: color .4s
-        }
-
-        nav.scrolled .nav-logo {
-            color: var(--olive-dark)
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 34px;
-            list-style: none
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--paper);
-            font-size: .78rem;
-            letter-spacing: .18em;
-            text-transform: uppercase;
-            padding: 4px 0;
-            position: relative;
-            transition: color .4s;
-        }
-
-        nav.scrolled .nav-links a {
-            color: var(--ink)
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -2px;
-            height: 1px;
-            width: 0;
-            background: var(--gold);
-            transition: width .3s
-        }
-
-        .nav-links a:hover::after, .nav-links a.active::after {
-            width: 100%
-        }
-
-        .nav-links a.active {
-            color: var(--gold-light)
-        }
-
-        nav.scrolled .nav-links a.active {
-            color: var(--gold)
-        }
-
-        .burger {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 110;
-            padding: 6px
-        }
-
-        .burger span {
-            display: block;
-            width: 26px;
-            height: 2px;
-            background: var(--paper);
-            margin: 6px 0;
-            transition: .35s
-        }
-
-        nav.scrolled .burger span {
-            background: var(--olive-dark)
-        }
-
-        nav.open .burger span {
-            background: var(--olive-dark)
-        }
-
-        nav.open .burger span:nth-child(1) {
-            transform: translateY(8px) rotate(45deg)
-        }
-
-        nav.open .burger span:nth-child(2) {
-            opacity: 0
-        }
-
-        nav.open .burger span:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg)
-        }
-
-        /* ---------- HERO ---------- */
-        .hero {
-            min-height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(70, 75, 48, .45), rgba(70, 75, 48, .55)),
-            url('https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1787488651534_vu8b8xrul.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODc0ODg2NTE1MzRfdnU4Yjh4cnVsLmpwZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODc0ODg2NTksImV4cCI6MTgxOTAyNDY1OX0.vzFiYzyVreO2joLRlg7fXd6SKHRU_YxaPjds3AzyHnQ') center/cover no-repeat fixed;
-            padding: 120px 6vw 80px;
-        }
-
-        .hero-inner {
-            max-width: 820px;
-            color: var(--paper)
-        }
-
-        .hero-eyebrow {
-            letter-spacing: .4em;
-            text-transform: uppercase;
-            font-size: .75rem;
-            color: var(--gold-light);
-            margin-bottom: 22px
-        }
-
-        .hero h1 {
-            font-size: clamp(2.6rem, 7vw, 5rem);
-            color: var(--paper);
-            line-height: 1.15;
-            letter-spacing: .04em
-        }
-
-        .hero .amp {
-            font-family: 'Great Vibes', cursive;
-            color: var(--gold-light);
-            font-size: .85em;
-            margin: 0 .1em
-        }
-
-        .hero-quote {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: clamp(1.05rem, 2.4vw, 1.4rem);
-            margin-top: 22px;
-            letter-spacing: .14em;
-            text-transform: uppercase;
-            color: #e9e4d3
-        }
-
-        .hero-date {
-            margin-top: 26px;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.3rem, 3vw, 1.8rem);
-            letter-spacing: .28em
-        }
-
-        .hero-line {
-            width: 70px;
-            height: 1px;
-            background: var(--gold-light);
-            margin: 26px auto
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 34px;
-            padding: 15px 44px;
-            border: 1px solid var(--gold-light);
-            color: var(--paper);
-            text-decoration: none;
-            font-size: .75rem;
-            letter-spacing: .28em;
-            text-transform: uppercase;
-            transition: .35s;
-            background: transparent;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .btn:hover {
-            background: var(--gold-light);
-            color: var(--olive-deep)
-        }
-
-        .btn-solid {
-            background: var(--olive);
-            border-color: var(--olive);
-            color: var(--paper)
-        }
-
-        .btn-solid:hover {
-            background: var(--olive-dark);
-            border-color: var(--olive-dark);
-            color: var(--paper)
-        }
-
-        .scroll-hint {
-            position: absolute;
-            bottom: 28px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--paper);
-            opacity: .7;
-            animation: bob 2.2s infinite ease-in-out
-        }
-
-        @keyframes bob {
-            0%, 100% {
-                transform: translate(-50%, 0)
-            }
-            50% {
-                transform: translate(-50%, 10px)
-            }
-        }
-
-        /* ---------- SECTIONS ---------- */
-        section {
-            padding: 100px 6vw;
-            position: relative
-        }
-
-        .container {
-            max-width: 1080px;
-            margin: 0 auto
-        }
-
-        .sec-eyebrow {
-            text-align: center;
-            letter-spacing: .35em;
-            text-transform: uppercase;
-            font-size: .72rem;
-            color: var(--gold);
-            margin-bottom: 12px
-        }
-
-        .sec-title {
-            text-align: center;
-            font-size: clamp(2rem, 4.5vw, 2.9rem);
-            margin-bottom: 14px
-        }
-
-        .sec-sub {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 56px;
-            color: #6d6d5c;
-            font-size: .95rem
-        }
-
-        .branch-divider {
-            display: block;
-            margin: 0 auto 18px;
-            width: 130px
-        }
-
-        /* ---------- COUNTDOWN ---------- */
-        .countdown-sec {
-            background: var(--paper);
-            border-top: 1px solid var(--cream-2);
-            border-bottom: 1px solid var(--cream-2)
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: clamp(16px, 5vw, 60px);
-            flex-wrap: wrap
-        }
-
-        .cd-box {
-            text-align: center;
-            min-width: 90px
-        }
-
-        .cd-num {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.6rem, 6vw, 4rem);
-            color: var(--olive-dark);
-            line-height: 1
-        }
-
-        .cd-label {
-            letter-spacing: .25em;
-            text-transform: uppercase;
-            font-size: .68rem;
-            color: var(--gold);
-            margin-top: 8px
-        }
-
-        /* ---------- STORY ---------- */
-        .story-grid {
-            display: grid;
-            grid-template-columns:1fr 1fr;
-            gap: 60px;
-            align-items: center
-        }
-
-        .story-img {
-            position: relative
-        }
-
-        .story-img img {
-            width: 100%;
-            border-radius: 2px;
-            box-shadow: var(--shadow);
-            display: block
-        }
-
-        .story-img::before {
-            content: '';
-            position: absolute;
-            inset: -16px;
-            border: 1px solid var(--gold-light);
-            border-radius: 2px;
-            z-index: -1;
-            transform: rotate(-2deg);
-        }
-
-        .story-text h3 {
-            font-size: 1.9rem;
-            margin-bottom: 18px
-        }
-
-        .story-text p {
-            margin-bottom: 16px;
-            color: #5f5f4f;
-            font-size: .95rem
-        }
-
-        .story-sig {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2rem;
-            color: var(--olive)
-        }
-
-        /* ---------- TIMELINE ---------- */
-        .timeline-sec {
-            background: var(--paper)
-        }
-
-        .timeline {
-            max-width: 700px;
-            margin: 0 auto;
-            position: relative
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: var(--gold-light);
-            transform: translateX(-50%)
-        }
-
-        .tl-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 48px;
-            position: relative;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity .7s, transform .7s
-        }
-
-        .tl-item.visible {
-            opacity: 1;
-            transform: none
-        }
-
-        .tl-item:nth-child(odd) {
-            flex-direction: row-reverse
-        }
-
-        .tl-item:nth-child(odd) .tl-content {
-            text-align: left;
-            padding-left: 44px
-        }
-
-        .tl-item:nth-child(even) .tl-content {
-            text-align: right;
-            padding-right: 44px
-        }
-
-        .tl-content {
-            width: 50%
-        }
-
-        .tl-time {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            color: var(--gold)
-        }
-
-        .tl-content h3 {
-            font-size: 1.25rem;
-            margin: 4px 0
-        }
-
-        .tl-content p {
-            font-size: .85rem;
-            color: #6d6d5c
-        }
-
-        .tl-dot {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: var(--cream);
-            border: 1px solid var(--gold-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            z-index: 2;
-        }
-
-        .tl-spacer {
-            width: 50%
-        }
-
-        /* ---------- LOCATION ---------- */
-        .loc-grid {
-            display: grid;
-            grid-template-columns:1fr 1fr;
-            gap: 0;
-            box-shadow: var(--shadow);
-            border-radius: 2px;
-            overflow: hidden
-        }
-
-        .loc-info {
-            background: var(--olive-dark);
-            color: var(--cream);
-            padding: 60px 48px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center
-        }
-
-        .loc-info h3 {
-            color: var(--paper);
-            font-size: 1.9rem;
-            margin-bottom: 16px
-        }
-
-        .loc-info p {
-            font-size: .9rem;
-            color: #dcd8c4;
-            margin-bottom: 12px
-        }
-
-        .loc-info .btn {
-            align-self: flex-start;
-            border-color: var(--gold-light);
-            margin-top: 20px
-        }
-
-        .loc-map iframe {
-            width: 100%;
-            height: 100%;
-            min-height: 380px;
-            border: 0;
-            display: block;
-            filter: sepia(.25) saturate(.85)
-        }
-
-        /* ---------- DRESSCODE ---------- */
-        .palette {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 10px
-        }
-
-        .swatch {
-            text-align: center
-        }
-
-        .swatch .dot {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            box-shadow: inset 0 0 0 4px var(--paper), 0 6px 18px rgba(70, 75, 48, .25);
-            margin: 0 auto 10px;
-            transition: transform .3s;
-            cursor: pointer
-        }
-
-        .swatch .dot:hover {
-            transform: scale(1.12)
-        }
-
-        .swatch span {
-            font-size: .7rem;
-            letter-spacing: .15em;
-            text-transform: uppercase;
-            color: #6d6d5c
-        }
-
-        /* ---------- RSVP ---------- */
-        .rsvp-sec {
-            background: linear-gradient(rgba(250, 247, 239, .92), rgba(250, 247, 239, .92)),
-            url('https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1787488650260_eghegghmp.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODc0ODg2NTAyNjBfZWdoZWdnaG1wLmpwZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODc0ODg2NTksImV4cCI6MTgxOTAyNDY1OX0.mELfBUZhqHccH6OOQ9M1oN5iD9hnZFzTKjkD8o6PRCw') center/cover;
-        }
-
-        .rsvp-card {
-            max-width: 560px;
-            margin: 0 auto;
-            background: var(--paper);
-            padding: 52px 46px;
-            box-shadow: var(--shadow);
-            border-radius: 2px;
-            border: 1px solid var(--cream-2);
-            position: relative
-        }
-
-        .rsvp-card::before {
-            content: '';
-            position: absolute;
-            inset: 10px;
-            border: 1px solid var(--gold-light);
-            pointer-events: none;
-            border-radius: 1px
-        }
-
-        .field {
-            margin-bottom: 22px
-        }
-
-        .field label {
-            display: block;
-            font-size: .7rem;
-            letter-spacing: .2em;
-            text-transform: uppercase;
-            color: var(--olive-dark);
-            margin-bottom: 8px
-        }
-
-        .field input, .field select, .field textarea {
-            width: 100%;
-            padding: 13px 14px;
-            border: 1px solid #d8d2bf;
-            background: #fffdf8;
-            border-radius: 2px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: .9rem;
-            color: var(--ink);
-            transition: border-color .3s, box-shadow .3s;
-            outline: none;
-        }
-
-        .field input:focus, .field select:focus, .field textarea:focus {
-            border-color: var(--olive);
-            box-shadow: 0 0 0 3px rgba(124, 131, 84, .15)
-        }
-
-        .field input.error {
-            border-color: #b45b4b;
-            box-shadow: 0 0 0 3px rgba(180, 91, 75, .12)
-        }
-
-        .field .err-msg {
-            font-size: .72rem;
-            color: #b45b4b;
-            margin-top: 5px;
-            display: none
-        }
-
-        .radio-row {
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap
-        }
-
-        .chip {
-            position: relative
-        }
-
-        .chip input {
-            position: absolute;
-            opacity: 0;
-            pointer-events: none
-        }
-
-        .chip label {
-            display: inline-block;
-            padding: 10px 22px;
-            border: 1px solid #d8d2bf;
-            border-radius: 30px;
-            font-size: .8rem;
-            cursor: pointer;
-            transition: .3s;
-            color: var(--ink);
-            letter-spacing: .03em;
-        }
-
-        .chip input:checked + label {
-            background: var(--olive);
-            border-color: var(--olive);
-            color: var(--paper)
-        }
-
-        .rsvp-success {
-            text-align: center;
-            display: none;
-            padding: 30px 0
-        }
-
-        .rsvp-success .script {
-            font-size: 2.4rem;
-            color: var(--olive)
-        }
-
-        .rsvp-success p {
-            margin-top: 12px;
-            color: #6d6d5c;
-            font-size: .92rem
-        }
-
-        /* ---------- FOOTER ---------- */
-        footer {
-            background: var(--olive-deep);
-            color: #cfcab2;
-            text-align: center;
-            padding: 64px 6vw 40px
-        }
-
-        footer .script {
-            font-size: 2.6rem;
-            color: var(--gold-light)
-        }
-
-        footer p {
-            font-size: .78rem;
-            letter-spacing: .2em;
-            text-transform: uppercase;
-            margin-top: 14px
-        }
-
-        footer .small {
-            font-size: .68rem;
-            margin-top: 26px;
-            letter-spacing: .1em;
-            color: #9a9880;
-            text-transform: none
-        }
-
-        /* ---------- REVEAL ---------- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(36px);
-            transition: opacity .8s ease, transform .8s ease
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: none
-        }
-
-        /* floral corners */
-        .corner {
-            position: absolute;
-            width: 150px;
-            opacity: .6;
-            pointer-events: none
-        }
-
-        .corner.tl {
-            top: 14px;
-            left: 14px
-        }
-
-        .corner.br {
-            bottom: 14px;
-            right: 14px;
-            transform: rotate(180deg)
-        }
-
-        /* ---------- MOBILE ---------- */
-        @media (max-width: 860px) {
-            .story-grid, .loc-grid {
-                grid-template-columns:1fr;
-                gap: 44px
-            }
-
-            .loc-map iframe {
-                min-height: 300px
-            }
-
-            .burger {
-                display: block
-            }
-
-            .nav-links {
-                position: fixed;
-                inset: 0;
-                background: var(--paper);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 30px;
-                transform: translateX(100%);
-                transition: transform .4s ease;
-                z-index: 105;
-            }
-
-            nav.open .nav-links {
-                transform: none
-            }
-
-            .nav-links a {
-                color: var(--olive-dark) !important;
-                font-size: 1rem
-            }
-
-            .timeline::before {
-                left: 22px
-            }
-
-            .tl-item, .tl-item:nth-child(odd) {
-                flex-direction: row
-            }
-
-            .tl-dot {
-                left: 22px
-            }
-
-            .tl-spacer {
-                display: none
-            }
-
-            .tl-content {
-                width: 100%;
-                padding-left: 64px !important;
-                padding-right: 0 !important;
-                text-align: left !important
-            }
-
-            .rsvp-card {
-                padding: 44px 26px
-            }
-
-            .hero {
-                background-attachment: scroll
-            }
-        }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/rrweb@2.0.0-alpha.4/dist/rrweb.min.js"></script>
-    <style id="_goober"> .go1475592160 {
-        height: 0;
-    }
-
-    .go1671063245 {
-        height: auto;
-    }
-
-    .go1888806478 {
-        display: flex;
-        flex-wrap: wrap;
-        flex-grow: 1;
-    }
-
-    @media (min-width: 600px) {
-        .go1888806478 {
-            flex-grow: initial;
-            min-width: 288px;
-        }
-    }
-
-    .go167266335 {
-        background-color: #313131;
-        font-size: 0.875rem;
-        line-height: 1.43;
-        letter-spacing: 0.01071em;
-        color: #fff;
-        align-items: center;
-        padding: 6px 16px;
-        border-radius: 4px;
-        box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
-    }
-
-    .go3162094071 {
-        padding-left: 20px;
-    }
-
-    .go3844575157 {
-        background-color: #313131;
-    }
-
-    .go1725278324 {
-        background-color: #43a047;
-    }
-
-    .go3651055292 {
-        background-color: #d32f2f;
-    }
-
-    .go4215275574 {
-        background-color: #ff9800;
-    }
-
-    .go1930647212 {
-        background-color: #2196f3;
-    }
-
-    .go946087465 {
-        display: flex;
-        align-items: center;
-        padding: 8px 0;
-    }
-
-    .go703367398 {
-        display: flex;
-        align-items: center;
-        margin-left: auto;
-        padding-left: 16px;
-        margin-right: -8px;
-    }
-
-    .go3963613292 {
-        width: 100%;
-        position: relative;
-        transform: translateX(0);
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        min-width: 288px;
-    }
-
-    .go1141946668 {
-        box-sizing: border-box;
-        display: flex;
-        max-height: 100%;
-        position: fixed;
-        z-index: 1400;
-        height: auto;
-        width: auto;
-        transition: top 300ms ease 0ms, right 300ms ease 0ms, bottom 300ms ease 0ms, left 300ms ease 0ms, max-width 300ms ease 0ms;
-        pointer-events: none;
-        max-width: calc(100% - 40px);
-    }
-
-    .go1141946668 .notistack-CollapseWrapper {
-        padding: 6px 0px;
-        transition: padding 300ms ease 0ms;
-    }
-
-    @media (max-width: 599.95px) {
-        .go1141946668 {
-            width: 100%;
-            max-width: calc(100% - 32px);
-        }
-    }
-
-    .go3868796639 .notistack-CollapseWrapper {
-        padding: 2px 0px;
-    }
-
-    .go3118922589 {
-        top: 14px;
-        flex-direction: column;
-    }
-
-    .go1453831412 {
-        bottom: 14px;
-        flex-direction: column-reverse;
-    }
-
-    .go4027089540 {
-        left: 20px;
-    }
-
-    @media (min-width: 600px) {
-        .go4027089540 {
-            align-items: flex-start;
-        }
-    }
-
-    @media (max-width: 599.95px) {
-        .go4027089540 {
-            left: 16px;
-        }
-    }
-
-    .go2989568495 {
-        right: 20px;
-    }
-
-    @media (min-width: 600px) {
-        .go2989568495 {
-            align-items: flex-end;
-        }
-    }
-
-    @media (max-width: 599.95px) {
-        .go2989568495 {
-            right: 16px;
-        }
-    }
-
-    .go4034260886 {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    @media (min-width: 600px) {
-        .go4034260886 {
-            align-items: center;
-        }
-    }</style>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Montserrat:wght@300;400;500&amp;family=Great+Vibes&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="nav">
-    <a href="#" onclick="return false" class="nav-logo">А &amp; М</a>
-    <button class="burger" id="burger" aria-label="Меню">
-        <span></span><span></span><span></span>
+    <a href="#hero" class="nav-logo">А &amp; М</a>
+    <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </button>
     <ul class="nav-links" id="navLinks">
-        <li><a href="#" onclick="return false">История</a></li>
-        <li><a href="#" onclick="return false">Программа</a></li>
-        <li><a href="#" onclick="return false">Место</a></li>
-        <li><a href="#" onclick="return false">Дресс-код</a></li>
-        <li><a href="#" onclick="return false">Анкета</a></li>
+        <li><a href="#story">История</a></li>
+        <li><a href="#timeline">Программа</a></li>
+        <li><a href="#location">Место</a></li>
+        <li><a href="#dresscode">Дресс-код</a></li>
+        <li><a href="#rsvp">Анкета</a></li>
     </ul>
 </nav>
 
-<!-- HERO -->
 <header class="hero" id="hero">
     <div class="hero-inner">
         <div class="hero-eyebrow">Приглашаем на свадьбу</div>
@@ -1009,70 +32,50 @@
         <div class="hero-line"></div>
         <div class="hero-quote">For always the love of my life.</div>
         <div class="hero-date">26 · 09 · 2026</div>
-        <a href="#" onclick="return false" class="btn">Подтвердить присутствие</a>
+        <a href="#rsvp" class="btn">Подтвердить присутствие</a>
     </div>
-    <div class="scroll-hint">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+    <div class="scroll-hint" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
             <path d="M6 9l6 6 6-6"></path>
         </svg>
     </div>
 </header>
 
-<!-- COUNTDOWN -->
-<section class="countdown-sec" id="countdown">
-    <svg class="branch-divider" viewBox="0 0 130 24" fill="none">
+<section class="countdown-sec" id="countdown" aria-labelledby="countdown-title">
+    <svg class="branch-divider" viewBox="0 0 130 24" fill="none" aria-hidden="true">
         <path d="M5 12 H125" stroke="#b9964f" stroke-width="0.7"></path>
         <ellipse cx="45" cy="8" rx="9" ry="3" fill="#7c8354" transform="rotate(-25 45 8)"></ellipse>
         <ellipse cx="65" cy="12" rx="10" ry="3.2" fill="#5d6340" transform="rotate(0 65 12)"></ellipse>
         <ellipse cx="85" cy="16" rx="9" ry="3" fill="#7c8354" transform="rotate(25 85 16)"></ellipse>
     </svg>
-    <p class="sec-eyebrow">До нашего дня осталось</p>
-    <div class="countdown" style="margin-top:36px">
-        <div class="cd-box">
-            <div class="cd-num" id="cd-d">30</div>
-            <div class="cd-label">дней</div>
-        </div>
-        <div class="cd-box">
-            <div class="cd-num" id="cd-h">15</div>
-            <div class="cd-label">часов</div>
-        </div>
-        <div class="cd-box">
-            <div class="cd-num" id="cd-m">25</div>
-            <div class="cd-label">минут</div>
-        </div>
-        <div class="cd-box">
-            <div class="cd-num" id="cd-s">17</div>
-            <div class="cd-label">секунд</div>
-        </div>
+    <p class="sec-eyebrow" id="countdown-title">До нашего дня осталось</p>
+    <div class="countdown" aria-live="polite" aria-atomic="true">
+        <div class="cd-box"><div class="cd-num" id="cd-d">30</div><div class="cd-label">дней</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-h">15</div><div class="cd-label">часов</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-m">25</div><div class="cd-label">минут</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-s">17</div><div class="cd-label">секунд</div></div>
     </div>
 </section>
 
-<!-- STORY -->
 <section id="story">
     <div class="container">
         <p class="sec-eyebrow reveal">Наша история</p>
         <h2 class="sec-title reveal">Два сердца — одна судьба</h2>
-        <p class="sec-sub reveal">Мы прошли долгий путь друг к другу — и теперь хотим разделить самый важный день нашей
-            жизни с вами.</p>
+        <p class="sec-sub reveal">Мы прошли долгий путь друг к другу — и теперь хотим разделить самый важный день нашей жизни с вами.</p>
         <div class="story-grid">
             <div class="story-img reveal">
-                <img src="https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1787488650260_eghegghmp.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODc0ODg2NTAyNjBfZWdoZWdnaG1wLmpwZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODc0ODg2NTksImV4cCI6MTgxOTAyNDY1OX0.mELfBUZhqHccH6OOQ9M1oN5iD9hnZFzTKjkD8o6PRCw"
-                     alt="Обручальные кольца на пригласительной открытке с оливковой ветвью">
+                <img src="images/story_img.jpg" alt="Обручальные кольца на пригласительной открытке с оливковой ветвью" loading="lazy" decoding="async">
             </div>
             <div class="story-text reveal">
                 <h3>Дорогие родные и друзья!</h3>
-                <p>Пять лет назад случайная встреча в маленькой кофейне изменила нашу жизнь навсегда. С тех пор мы
-                    вместе встречаем рассветы, путешествуем, мечтаем — и наконец решили сказать друг другу самое главное
-                    «да».</p>
-                <p>Мы будем счастливы видеть вас на нашей свадьбе — в кругу самых близких людей, среди оливковых ветвей,
-                    тёплого света и искренней любви.</p>
+                <p>Пять лет назад случайная встреча в маленькой кофейне изменила нашу жизнь навсегда. С тех пор мы вместе встречаем рассветы, путешествуем, мечтаем — и наконец решили сказать друг другу самое главное «да».</p>
+                <p>Мы будем счастливы видеть вас на нашей свадьбе — в кругу самых близких людей, среди оливковых ветвей, тёплого света и искренней любви.</p>
                 <p class="story-sig">С любовью, Анна и Михаил</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- TIMELINE -->
 <section class="timeline-sec" id="timeline">
     <div class="container">
         <p class="sec-eyebrow reveal">План дня</p>
@@ -1080,50 +83,29 @@
         <p class="sec-sub reveal">26 сентября 2026 · суббота</p>
         <div class="timeline">
             <div class="tl-item">
-                <div class="tl-content">
-                    <div class="tl-time">15:00</div>
-                    <h3>Сбор гостей</h3>
-                    <p>Welcome-фуршет, лёгкие закуски и лимонады в саду усадьбы.</p></div>
-                <div class="tl-dot">🥂</div>
-                <div class="tl-spacer"></div>
+                <div class="tl-content"><div class="tl-time">15:00</div><h3>Сбор гостей</h3><p>Welcome-фуршет, лёгкие закуски и лимонады в саду усадьбы.</p></div>
+                <div class="tl-dot" aria-hidden="true">🥂</div><div class="tl-spacer"></div>
             </div>
             <div class="tl-item">
-                <div class="tl-content">
-                    <div class="tl-time">16:00</div>
-                    <h3>Церемония</h3>
-                    <p>Выездная регистрация под аркой из оливковых ветвей и живых цветов.</p></div>
-                <div class="tl-dot">💍</div>
-                <div class="tl-spacer"></div>
+                <div class="tl-content"><div class="tl-time">16:00</div><h3>Церемония</h3><p>Выездная регистрация под аркой из оливковых ветвей и живых цветов.</p></div>
+                <div class="tl-dot" aria-hidden="true">💍</div><div class="tl-spacer"></div>
             </div>
             <div class="tl-item">
-                <div class="tl-content">
-                    <div class="tl-time">17:00</div>
-                    <h3>Банкет</h3>
-                    <p>Праздничный ужин, тосты, тёплые слова и сюрпризы от молодожёнов.</p></div>
-                <div class="tl-dot">🍽️</div>
-                <div class="tl-spacer"></div>
+                <div class="tl-content"><div class="tl-time">17:00</div><h3>Банкет</h3><p>Праздничный ужин, тосты, тёплые слова и сюрпризы от молодожёнов.</p></div>
+                <div class="tl-dot" aria-hidden="true">🍽️</div><div class="tl-spacer"></div>
             </div>
             <div class="tl-item">
-                <div class="tl-content">
-                    <div class="tl-time">20:30</div>
-                    <h3>Первый танец</h3>
-                    <p>А затем — танцы для всех до самого позднего вечера.</p></div>
-                <div class="tl-dot">💃</div>
-                <div class="tl-spacer"></div>
+                <div class="tl-content"><div class="tl-time">20:30</div><h3>Первый танец</h3><p>А затем — танцы для всех до самого позднего вечера.</p></div>
+                <div class="tl-dot" aria-hidden="true">💃</div><div class="tl-spacer"></div>
             </div>
             <div class="tl-item">
-                <div class="tl-content">
-                    <div class="tl-time">22:30</div>
-                    <h3>Торт и финал</h3>
-                    <p>Свадебный торт, бенгальские огни и завершение волшебного дня.</p></div>
-                <div class="tl-dot">🎂</div>
-                <div class="tl-spacer"></div>
+                <div class="tl-content"><div class="tl-time">22:30</div><h3>Торт и финал</h3><p>Свадебный торт, бенгальские огни и завершение волшебного дня.</p></div>
+                <div class="tl-dot" aria-hidden="true">🎂</div><div class="tl-spacer"></div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- LOCATION -->
 <section id="location">
     <div class="container">
         <p class="sec-eyebrow reveal">Локация</p>
@@ -1135,50 +117,36 @@
                 <p>Московская область, Одинцовский район,<br>пос. Загорье, ул. Садовая, 12</p>
                 <p>Для гостей организован трансфер от м. Молодёжная в 13:30. Парковка на территории — бесплатная.</p>
                 <p>Вопросы — организатору Екатерине:<br>+7 (900) 123-45-67</p>
-                <a class="btn" href="#" onclick="return false" target="_blank" rel="noopener">Открыть карту</a>
+                <a class="btn" id="mapButton" href="https://www.openstreetmap.org/?mlat=55.678&amp;mlon=37.28#map=14/55.678/37.28" target="_blank" rel="noopener noreferrer">Открыть карту</a>
             </div>
             <div class="loc-map">
-                <iframe title="Карта" loading="lazy"
-                        src="https://www.openstreetmap.org/export/embed.html?bbox=37.20%2C55.64%2C37.36%2C55.72&amp;layer=mapnik&amp;marker=55.678%2C37.28"></iframe>
+                <iframe title="Карта места проведения" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=37.20%2C55.64%2C37.36%2C55.72&amp;layer=mapnik&amp;marker=55.678%2C37.28"></iframe>
             </div>
         </div>
     </div>
 </section>
 
-<!-- DRESSCODE -->
 <section class="countdown-sec" id="dresscode">
     <div class="container">
         <p class="sec-eyebrow reveal">Дресс-код</p>
         <h2 class="sec-title reveal">Палитра нашего дня</h2>
-        <p class="sec-sub reveal">Мы будем рады, если в своих нарядах вы поддержите природную гамму торжества — оттенки
-            оливы, сливок и золота.</p>
+        <p class="sec-sub reveal">Мы будем рады, если в своих нарядах вы поддержите природную гамму торжества — оттенки оливы, сливок и золота.</p>
         <div class="palette reveal">
-            <div class="swatch">
-                <div class="dot" style="background:#7c8354" title="Олива"></div>
-                <span>Олива</span></div>
-            <div class="swatch">
-                <div class="dot" style="background:#a8ab7e" title="Шалфей"></div>
-                <span>Шалфей</span></div>
-            <div class="swatch">
-                <div class="dot" style="background:#f4efe4;border:1px solid #d8d2bf" title="Сливки"></div>
-                <span>Сливки</span></div>
-            <div class="swatch">
-                <div class="dot" style="background:#d4b878" title="Золото"></div>
-                <span>Золото</span></div>
-            <div class="swatch">
-                <div class="dot" style="background:#5d6340" title="Тёмная олива"></div>
-                <span>Хвоя</span></div>
+            <div class="swatch"><div class="dot swatch-olive" title="Олива" aria-hidden="true"></div><span>Олива</span></div>
+            <div class="swatch"><div class="dot swatch-sage" title="Шалфей" aria-hidden="true"></div><span>Шалфей</span></div>
+            <div class="swatch"><div class="dot swatch-cream" title="Сливки" aria-hidden="true"></div><span>Сливки</span></div>
+            <div class="swatch"><div class="dot swatch-gold" title="Золото" aria-hidden="true"></div><span>Золото</span></div>
+            <div class="swatch"><div class="dot swatch-pine" title="Тёмная олива" aria-hidden="true"></div><span>Хвоя</span></div>
         </div>
     </div>
 </section>
 
-<!-- RSVP -->
 <section class="rsvp-sec" id="rsvp">
     <p class="sec-eyebrow reveal">Ждём вас</p>
     <h2 class="sec-title reveal">Подтвердите присутствие</h2>
     <p class="sec-sub reveal">Пожалуйста, заполните анкету до 1 сентября 2026 года.</p>
     <div class="rsvp-card reveal">
-        <form id="rsvpForm" novalidate="">
+        <form id="rsvpForm" novalidate>
             <div class="field">
                 <label for="fname">Имя и фамилия *</label>
                 <input type="text" id="fname" placeholder="Например: Ирина Соколова" autocomplete="name">
@@ -1192,12 +160,9 @@
             <div class="field">
                 <label>Сможете ли вы присутствовать? *</label>
                 <div class="radio-row">
-                    <div class="chip"><input type="radio" name="attend" id="a-yes" value="yes"><label for="a-yes">С
-                        радостью приду</label></div>
-                    <div class="chip"><input type="radio" name="attend" id="a-pair" value="pair"><label for="a-pair">Придём
-                        вдвоём</label></div>
-                    <div class="chip"><input type="radio" name="attend" id="a-no" value="no"><label for="a-no">Не
-                        смогу</label></div>
+                    <div class="chip"><input type="radio" name="attend" id="a-yes" value="yes"><label for="a-yes">С радостью приду</label></div>
+                    <div class="chip"><input type="radio" name="attend" id="a-pair" value="pair"><label for="a-pair">Придём вдвоём</label></div>
+                    <div class="chip"><input type="radio" name="attend" id="a-no" value="no"><label for="a-no">Не смогу</label></div>
                 </div>
                 <div class="err-msg" id="attendErr">Выберите один из вариантов</div>
             </div>
@@ -1205,364 +170,30 @@
                 <label for="fdrink">Предпочтения по напиткам</label>
                 <select id="fdrink">
                     <option value="">— выберите —</option>
-                    <option>Вино белое</option>
-                    <option>Вино красное</option>
-                    <option>Шампанское</option>
-                    <option>Крепкие напитки</option>
-                    <option>Безалкогольное</option>
+                    <option>Вино белое</option><option>Вино красное</option><option>Шампанское</option><option>Крепкие напитки</option><option>Безалкогольное</option>
                 </select>
             </div>
             <div class="field">
                 <label for="fwish">Пожелание молодожёнам</label>
                 <textarea id="fwish" rows="3" placeholder="Тёплые слова для нас…"></textarea>
             </div>
-            <button type="submit" class="btn btn-solid" style="width:100%;margin-top:6px">Отправить ответ</button>
+            <button type="submit" class="btn btn-solid rsvp-submit">Отправить ответ</button>
         </form>
         <div class="rsvp-success" id="rsvpSuccess">
             <div class="script">Спасибо!</div>
             <p>Ваш ответ получен. Мы очень ждём встречи с вами 26 сентября 2026 года! 🕊️</p>
-            <button class="btn btn-solid" id="againBtn" style="margin-top:10px">Заполнить ещё раз</button>
+            <button class="btn btn-solid rsvp-again" id="againBtn" type="button">Заполнить ещё раз</button>
         </div>
     </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
     <div class="script">Анна &amp; Михаил</div>
     <p>26 сентября 2026 · Усадьба «Оливковая роща»</p>
-    <p style="letter-spacing:.35em;color:var(--gold-light);margin-top:20px">For always the love of my life.</p>
+    <p class="footer-quote">For always the love of my life.</p>
     <p class="small">С любовью сделано для наших дорогих гостей</p>
 </footer>
 
-<script>
-    // ---------- NAV ----------
-    const nav = document.getElementById('nav');
-    const burger = document.getElementById('burger');
-    const navLinks = document.getElementById('navLinks');
-
-    window.addEventListener('scroll', () => {
-        nav.classList.toggle('scrolled', window.scrollY > 60);
-        updateActiveLink();
-    });
-
-    burger.addEventListener('click', () => nav.classList.toggle('open'));
-    navLinks.querySelectorAll('a').forEach(a =>
-        a.addEventListener('click', () => nav.classList.remove('open'))
-    );
-
-    const sections = ['story', 'timeline', 'location', 'dresscode', 'rsvp'];
-
-    function updateActiveLink() {
-        let current = '';
-        sections.forEach(id => {
-            const el = document.getElementById(id);
-            if (el && window.scrollY + 200 >= el.offsetTop) current = id;
-        });
-        navLinks.querySelectorAll('a').forEach(a => {
-            a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-        });
-    }
-
-    // ---------- COUNTDOWN ----------
-    const target = new Date('2026-09-26T15:00:00');
-
-    function pad(n) {
-        return String(n).padStart(2, '0');
-    }
-
-    function tick() {
-        const diff = target - new Date();
-        if (diff <= 0) {
-            ['cd-d', 'cd-h', 'cd-m', 'cd-s'].forEach(id => document.getElementById(id).textContent = '0');
-            return;
-        }
-        document.getElementById('cd-d').textContent = Math.floor(diff / 864e5);
-        document.getElementById('cd-h').textContent = pad(Math.floor(diff / 36e5) % 24);
-        document.getElementById('cd-m').textContent = pad(Math.floor(diff / 6e4) % 60);
-        document.getElementById('cd-s').textContent = pad(Math.floor(diff / 1e3) % 60);
-    }
-
-    tick();
-    setInterval(tick, 1000);
-
-    // ---------- SCROLL REVEAL ----------
-    const io = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                e.target.classList.add('visible');
-                io.unobserve(e.target);
-            }
-        });
-    }, {threshold: .15});
-    document.querySelectorAll('.reveal, .tl-item').forEach(el => io.observe(el));
-
-    // ---------- RSVP FORM ----------
-    const form = document.getElementById('rsvpForm');
-    const success = document.getElementById('rsvpSuccess');
-
-    function setError(input, show) {
-        input.classList.toggle('error', show);
-        const msg = input.closest('.field').querySelector('.err-msg');
-        if (msg) msg.style.display = show ? 'block' : 'none';
-    }
-
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        let ok = true;
-
-        const name = document.getElementById('fname');
-        if (name.value.trim().length < 2) {
-            setError(name, true);
-            ok = false;
-        } else setError(name, false);
-
-        const phone = document.getElementById('fphone');
-        const digits = phone.value.replace(/\D/g, '');
-        if (digits.length < 10) {
-            setError(phone, true);
-            ok = false;
-        } else setError(phone, false);
-
-        const attend = form.querySelector('input[name="attend"]:checked');
-        const attendErr = document.getElementById('attendErr');
-        if (!attend) {
-            attendErr.style.display = 'block';
-            ok = false;
-        } else attendErr.style.display = 'none';
-
-        if (!ok) return;
-
-        form.style.display = 'none';
-        success.style.display = 'block';
-    });
-
-    ['fname', 'fphone'].forEach(id => {
-        const el = document.getElementById(id);
-        el.addEventListener('input', () => setError(el, false));
-    });
-    form.querySelectorAll('input[name="attend"]').forEach(r =>
-        r.addEventListener('change', () => document.getElementById('attendErr').style.display = 'none')
-    );
-
-    document.getElementById('againBtn').addEventListener('click', () => {
-        form.reset();
-        form.style.display = 'block';
-        success.style.display = 'none';
-    });
-</script>
-
-<script>
-    (function () {
-        function triggerReveals() {
-            document.querySelectorAll('.reveal').forEach(function (el) {
-                var rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    el.classList.add('in', 'is-visible');
-                }
-            });
-        }
-
-        // Trigger on load and after a short delay to catch timing issues
-        if (document.readyState === 'complete') {
-            triggerReveals();
-            setTimeout(triggerReveals, 100);
-        } else {
-            window.addEventListener('load', function () {
-                triggerReveals();
-                setTimeout(triggerReveals, 100);
-            });
-        }
-    })();
-</script>
-<script data-recording-tracker="true">
-    (function () {
-        var meta = {
-            "generationId": "40beda00-4711-4830-a3fb-2f417ee0f485",
-            "tournamentId": "85742c6d-0a4e-465f-aa53-f7722db1d5d7"
-        };
-        var startTime = Date.now();
-        var interactions = [];
-        var cursorPath = [];
-        var lastCursorSample = 0;
-        var lastScrollSample = 0;
-        var pageHeight = document.documentElement.scrollHeight;
-        var viewport = {width: window.innerWidth, height: window.innerHeight};
-
-        var MAX_RECORDING_MS = 600000;
-        var MAX_INTERACTIONS = 5000;
-        var MAX_CURSOR_POINTS = 10000;
-        var recordingStopped = false;
-
-        function isCapped() {
-            if (recordingStopped) return true;
-            if (Date.now() - startTime >= MAX_RECORDING_MS) {
-                recordingStopped = true;
-                return true;
-            }
-            return false;
-        }
-
-        try {
-            fetch('/api/page-views', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({tournamentId: meta.tournamentId, modelId: meta.generationId}),
-                keepalive: true
-            });
-        } catch (ex) {
-        }
-
-        window.addEventListener('resize', function () {
-            viewport = {width: window.innerWidth, height: window.innerHeight};
-            pageHeight = document.documentElement.scrollHeight;
-        });
-
-        document.addEventListener('click', function (e) {
-            if (isCapped() || interactions.length >= MAX_INTERACTIONS) return;
-            var el = e.target;
-            var tag = el.tagName ? el.tagName.toLowerCase() : '';
-            var text = (el.textContent || '').trim().substring(0, 80);
-            var classes = el.className && typeof el.className === 'string' ? el.className.substring(0, 120) : '';
-            interactions.push({
-                type: 'click',
-                t: Date.now() - startTime,
-                x: Math.round(e.clientX),
-                y: Math.round(e.clientY),
-                element: {tag: tag, text: text, classes: classes}
-            });
-        }, true);
-
-        window.addEventListener('scroll', function () {
-            if (isCapped() || interactions.length >= MAX_INTERACTIONS) return;
-            var now = Date.now();
-            if (now - lastScrollSample < 200) return;
-            lastScrollSample = now;
-            var scrollY = Math.round(window.scrollY || window.pageYOffset || 0);
-            var depthPct = pageHeight > viewport.height
-                ? Math.min(100, Math.round(((scrollY + viewport.height) / pageHeight) * 100))
-                : 100;
-            interactions.push({
-                type: 'scroll',
-                t: now - startTime,
-                y: scrollY,
-                depth_pct: depthPct
-            });
-        }, {passive: true});
-
-        document.addEventListener('mousemove', function (e) {
-            if (isCapped() || cursorPath.length >= MAX_CURSOR_POINTS) return;
-            var now = Date.now();
-            if (now - lastCursorSample < 250) return;
-            lastCursorSample = now;
-            cursorPath.push([Math.round(e.clientX), Math.round(e.clientY), now - startTime]);
-        }, {passive: true});
-
-        document.addEventListener('keydown', function (e) {
-            if (isCapped() || interactions.length >= MAX_INTERACTIONS) return;
-            if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
-            interactions.push({
-                type: 'keydown',
-                t: Date.now() - startTime,
-                key: e.key
-            });
-        }, true);
-
-        window.__getInteractionData = function () {
-            var ph = document.documentElement.scrollHeight;
-            var maxScroll = 0;
-            var clickElements = {};
-            var firstClick = null;
-            var firstScroll = null;
-            var totalDistance = 0;
-
-            for (var i = 0; i < interactions.length; i++) {
-                var ev = interactions[i];
-                if (ev.type === 'scroll') {
-                    if (ev.depth_pct > maxScroll) maxScroll = ev.depth_pct;
-                    if (!firstScroll) firstScroll = ev.t;
-                }
-                if (ev.type === 'click') {
-                    if (!firstClick) firstClick = ev.t;
-                    var key = ev.element.tag + ':' + ev.element.text.substring(0, 30);
-                    clickElements[key] = true;
-                }
-            }
-
-            for (var j = 1; j < cursorPath.length; j++) {
-                var dx = cursorPath[j][0] - cursorPath[j - 1][0];
-                var dy = cursorPath[j][1] - cursorPath[j - 1][1];
-                totalDistance += Math.sqrt(dx * dx + dy * dy);
-            }
-
-            var duration = Date.now() - startTime;
-            var clickHeatmap = [];
-            for (var k = 0; k < interactions.length; k++) {
-                if (interactions[k].type === 'click') {
-                    clickHeatmap.push([interactions[k].x, interactions[k].y]);
-                }
-            }
-
-            return {
-                generation_id: meta.generationId,
-                tournament_id: meta.tournamentId,
-                started_at: new Date(startTime).toISOString(),
-                ended_at: new Date().toISOString(),
-                duration_ms: duration,
-                viewport: viewport,
-                page_height: ph,
-                interactions: interactions,
-                cursor_path: cursorPath,
-                click_heatmap: clickHeatmap,
-                summary: {
-                    total_clicks: clickHeatmap.length,
-                    total_scrolls: interactions.filter(function (e) {
-                        return e.type === 'scroll';
-                    }).length,
-                    max_scroll_depth_pct: maxScroll,
-                    unique_elements_clicked: Object.keys(clickElements).length,
-                    time_to_first_click_ms: firstClick,
-                    time_to_first_scroll_ms: firstScroll,
-                    cursor_distance_px: Math.round(totalDistance),
-                    active_time_ms: duration
-                }
-            };
-        };
-    })();
-</script>
-<script data-recording-rrweb="true">
-    (function () {
-        var meta = {
-            "generationId": "40beda00-4711-4830-a3fb-2f417ee0f485",
-            "tournamentId": "85742c6d-0a4e-465f-aa53-f7722db1d5d7"
-        };
-        var MAX_RECORDING_MS = 600000;
-        var MAX_RRWEB_EVENTS = 30000;
-        var startTs = Date.now();
-        var script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/rrweb@2.0.0-alpha.4/dist/rrweb.min.js';
-        script.onload = function () {
-            var rec = (window.rrweb && window.rrweb.record) || window.rrwebRecord;
-            if (!rec) {
-                console.warn('[rrweb] Loaded but no record function found. Keys:', Object.keys(window.rrweb || {}));
-                return;
-            }
-            var events = [];
-            rec({
-                emit: function (event) {
-                    if (events.length >= MAX_RRWEB_EVENTS || Date.now() - startTs >= MAX_RECORDING_MS) return;
-                    events.push(event);
-                }
-            });
-            window.__getRrwebEvents = function () {
-                return {generationId: meta.generationId, events: events};
-            };
-            console.log('[rrweb] Recording started for', meta.generationId);
-        };
-        script.onerror = function (e) {
-            console.warn('[rrweb] Failed to load CDN script:', e);
-        };
-        document.head.appendChild(script);
-    })();
-</script>
+<script src="scripts/script.js" defer></script>
 </body>
 </html>
