@@ -2,17 +2,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Свадебное приглашение Анны и Михаила — 26 сентября 2026 года.">
     <title>Анна &amp; Михаил — Свадьба</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Montserrat:wght@300;400;500&amp;family=Great+Vibes&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <nav id="nav">
-    <a href="#" onclick="return false" class="nav-logo">А &amp; М</a>
-    <button class="burger" id="burger" aria-label="Меню">
-        <span></span><span></span><span></span>
+    <a href="#hero" class="nav-logo">А &amp; М</a>
+    <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
     </button>
     <ul class="nav-links" id="navLinks">
         <li><a href="#story">История</a></li>
@@ -32,22 +34,22 @@
         <div class="hero-date">26 · 09 · 2026</div>
         <a href="#rsvp" class="btn">Подтвердить присутствие</a>
     </div>
-    <div class="scroll-hint">
+    <div class="scroll-hint" aria-hidden="true">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
             <path d="M6 9l6 6 6-6"></path>
         </svg>
     </div>
 </header>
 
-<section class="countdown-sec" id="countdown">
+<section class="countdown-sec" id="countdown" aria-labelledby="countdown-title">
     <svg class="branch-divider" viewBox="0 0 130 24" fill="none" aria-hidden="true">
         <path d="M5 12 H125" stroke="#b9964f" stroke-width="0.7"></path>
         <ellipse cx="45" cy="8" rx="9" ry="3" fill="#7c8354" transform="rotate(-25 45 8)"></ellipse>
         <ellipse cx="65" cy="12" rx="10" ry="3.2" fill="#5d6340" transform="rotate(0 65 12)"></ellipse>
         <ellipse cx="85" cy="16" rx="9" ry="3" fill="#7c8354" transform="rotate(25 85 16)"></ellipse>
     </svg>
-    <p class="sec-eyebrow">До нашего дня осталось</p>
-    <div class="countdown">
+    <p class="sec-eyebrow" id="countdown-title">До нашего дня осталось</p>
+    <div class="countdown" aria-live="polite" aria-atomic="true">
         <div class="cd-box"><div class="cd-num" id="cd-d">30</div><div class="cd-label">дней</div></div>
         <div class="cd-box"><div class="cd-num" id="cd-h">15</div><div class="cd-label">часов</div></div>
         <div class="cd-box"><div class="cd-num" id="cd-m">25</div><div class="cd-label">минут</div></div>
@@ -62,7 +64,7 @@
         <p class="sec-sub reveal">Мы прошли долгий путь друг к другу — и теперь хотим разделить самый важный день нашей жизни с вами.</p>
         <div class="story-grid">
             <div class="story-img reveal">
-                <img src="https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1787488650260_eghegghmp.jpg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODc0ODg2NTAyNjBfZWdoZWdnaG1wLmpwZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODc0ODg2NTksImV4cCI6MTgxOTAyNDY1OX0.mELfBUZhqHccH6OOQ9M1oN5iD9hnZFzTKjkD8o6PRCw" alt="Обручальные кольца на пригласительной открытке с оливковой ветвью">
+                <img src="https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/public/images/inputs/1787488650260_eghegghmp.jpg" alt="Обручальные кольца на пригласительной открытке с оливковой ветвью" loading="lazy" decoding="async">
             </div>
             <div class="story-text reveal">
                 <h3>Дорогие родные и друзья!</h3>
@@ -82,23 +84,23 @@
         <div class="timeline">
             <div class="tl-item">
                 <div class="tl-content"><div class="tl-time">15:00</div><h3>Сбор гостей</h3><p>Welcome-фуршет, лёгкие закуски и лимонады в саду усадьбы.</p></div>
-                <div class="tl-dot">🥂</div><div class="tl-spacer"></div>
+                <div class="tl-dot" aria-hidden="true">🥂</div><div class="tl-spacer"></div>
             </div>
             <div class="tl-item">
                 <div class="tl-content"><div class="tl-time">16:00</div><h3>Церемония</h3><p>Выездная регистрация под аркой из оливковых ветвей и живых цветов.</p></div>
-                <div class="tl-dot">💍</div><div class="tl-spacer"></div>
+                <div class="tl-dot" aria-hidden="true">💍</div><div class="tl-spacer"></div>
             </div>
             <div class="tl-item">
                 <div class="tl-content"><div class="tl-time">17:00</div><h3>Банкет</h3><p>Праздничный ужин, тосты, тёплые слова и сюрпризы от молодожёнов.</p></div>
-                <div class="tl-dot">🍽️</div><div class="tl-spacer"></div>
+                <div class="tl-dot" aria-hidden="true">🍽️</div><div class="tl-spacer"></div>
             </div>
             <div class="tl-item">
                 <div class="tl-content"><div class="tl-time">20:30</div><h3>Первый танец</h3><p>А затем — танцы для всех до самого позднего вечера.</p></div>
-                <div class="tl-dot">💃</div><div class="tl-spacer"></div>
+                <div class="tl-dot" aria-hidden="true">💃</div><div class="tl-spacer"></div>
             </div>
             <div class="tl-item">
                 <div class="tl-content"><div class="tl-time">22:30</div><h3>Торт и финал</h3><p>Свадебный торт, бенгальские огни и завершение волшебного дня.</p></div>
-                <div class="tl-dot">🎂</div><div class="tl-spacer"></div>
+                <div class="tl-dot" aria-hidden="true">🎂</div><div class="tl-spacer"></div>
             </div>
         </div>
     </div>
@@ -115,10 +117,10 @@
                 <p>Московская область, Одинцовский район,<br>пос. Загорье, ул. Садовая, 12</p>
                 <p>Для гостей организован трансфер от м. Молодёжная в 13:30. Парковка на территории — бесплатная.</p>
                 <p>Вопросы — организатору Екатерине:<br>+7 (900) 123-45-67</p>
-                <a class="btn" href="#" onclick="return false" target="_blank" rel="noopener">Открыть карту</a>
+                <a class="btn" id="mapButton" href="https://www.openstreetmap.org/?mlat=55.678&amp;mlon=37.28#map=14/55.678/37.28" target="_blank" rel="noopener noreferrer">Открыть карту</a>
             </div>
             <div class="loc-map">
-                <iframe title="Карта" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=37.20%2C55.64%2C37.36%2C55.72&amp;layer=mapnik&amp;marker=55.678%2C37.28"></iframe>
+                <iframe title="Карта места проведения" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=37.20%2C55.64%2C37.36%2C55.72&amp;layer=mapnik&amp;marker=55.678%2C37.28"></iframe>
             </div>
         </div>
     </div>
@@ -130,11 +132,11 @@
         <h2 class="sec-title reveal">Палитра нашего дня</h2>
         <p class="sec-sub reveal">Мы будем рады, если в своих нарядах вы поддержите природную гамму торжества — оттенки оливы, сливок и золота.</p>
         <div class="palette reveal">
-            <div class="swatch"><div class="dot swatch-olive" title="Олива"></div><span>Олива</span></div>
-            <div class="swatch"><div class="dot swatch-sage" title="Шалфей"></div><span>Шалфей</span></div>
-            <div class="swatch"><div class="dot swatch-cream" title="Сливки"></div><span>Сливки</span></div>
-            <div class="swatch"><div class="dot swatch-gold" title="Золото"></div><span>Золото</span></div>
-            <div class="swatch"><div class="dot swatch-pine" title="Тёмная олива"></div><span>Хвоя</span></div>
+            <div class="swatch"><div class="dot swatch-olive" title="Олива" aria-hidden="true"></div><span>Олива</span></div>
+            <div class="swatch"><div class="dot swatch-sage" title="Шалфей" aria-hidden="true"></div><span>Шалфей</span></div>
+            <div class="swatch"><div class="dot swatch-cream" title="Сливки" aria-hidden="true"></div><span>Сливки</span></div>
+            <div class="swatch"><div class="dot swatch-gold" title="Золото" aria-hidden="true"></div><span>Золото</span></div>
+            <div class="swatch"><div class="dot swatch-pine" title="Тёмная олива" aria-hidden="true"></div><span>Хвоя</span></div>
         </div>
     </div>
 </section>
@@ -180,7 +182,7 @@
         <div class="rsvp-success" id="rsvpSuccess">
             <div class="script">Спасибо!</div>
             <p>Ваш ответ получен. Мы очень ждём встречи с вами 26 сентября 2026 года! 🕊️</p>
-            <button class="btn btn-solid rsvp-again" id="againBtn">Заполнить ещё раз</button>
+            <button class="btn btn-solid rsvp-again" id="againBtn" type="button">Заполнить ещё раз</button>
         </div>
     </div>
 </section>
