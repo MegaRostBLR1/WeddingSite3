@@ -154,9 +154,25 @@ initializeReveal();
 // ---------- ACCESSIBILITY ----------
 function initializeReducedMotion() {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const styleId = 'reduced-motion-style';
+    let style = document.getElementById(styleId);
+
+    if (!style) {
+        style = document.createElement('style');
+        style.id = styleId;
+        document.head.appendChild(style);
+    }
 
     const applyReducedMotion = (event) => {
-        document.documentElement.classList.toggle('reduce-motion', event.matches);
+        style.textContent = event.matches ? `
+            html { scroll-behavior: auto !important; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        ` : '';
     };
 
     applyReducedMotion(mediaQuery);
