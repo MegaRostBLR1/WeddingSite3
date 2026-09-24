@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Montserrat:wght@300;400;500&amp;family=Great+Vibes&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/style.css?v=20260924">
+    <link rel="stylesheet" href="styles/style.css?v=20260924b">
 </head>
 <body>
 
@@ -128,10 +128,10 @@
                 <p>Московская область, Одинцовский район,<br>пос. Загорье, ул. Садовая, 12</p>
                 <p>Для гостей организован трансфер от м. Молодёжная в 13:30. Парковка на территории — бесплатная.</p>
                 <p>Вопросы — организатору Екатерине:<br><a class="loc-phone" href="tel:+79001234567">+7 (900) 123-45-67</a></p>
-                <a class="btn" id="mapButton" href="https://www.openstreetmap.org/?mlat=55.678&amp;mlon=37.28#map=14/55.678/37.28" target="_blank" rel="noopener noreferrer">Открыть карту</a>
+                <a class="btn" id="mapButton" href="https://yandex.ru/maps/?ll=37.28%2C55.678&amp;z=14&amp;pt=37.28,55.678&amp;l=map" target="_blank" rel="noopener noreferrer">Открыть в Яндекс.Картах</a>
             </div>
             <div class="loc-map">
-                <iframe title="Карта места проведения" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=37.20%2C55.64%2C37.36%2C55.72&amp;layer=mapnik&amp;marker=55.678%2C37.28"></iframe>
+                <iframe id="mapFrame" title="Яндекс.Карта места проведения" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allow="fullscreen" allowfullscreen src="https://yandex.ru/map-widget/v1/?ll=37.28%2C55.678&amp;z=14&amp;pt=37.28,55.678,pm2rdm&amp;l=map"></iframe>
             </div>
         </div>
     </div>
@@ -215,6 +215,6 @@
     <p class="small">С любовью сделано для наших дорогих гостей</p>
 </footer>
 
-<script src="scripts/script.js?v=20260924" defer></script>
+<script src="scripts/script.js?v=20260924b" defer></script>
 </body>
 </html>

@@ -273,7 +273,7 @@ section { padding: clamp(72px, 9vw, 100px) clamp(20px, 6vw, 80px); position: rel
     text-decoration: underline;
 }
 .loc-info .btn { align-self: flex-start; border-color: var(--gold-light); margin-top: 20px; }
-.loc-map iframe { width: 100%; height: 100%; min-height: 380px; border: 0; display: block; filter: sepia(.25) saturate(.85); }
+.loc-map iframe { width: 100%; height: 100%; min-height: 380px; border: 0; display: block; }
 .palette { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 10px; }
 .swatch { text-align: center; }
 .swatch .dot { width: 64px; height: 64px; border-radius: 50%; box-shadow: inset 0 0 0 4px var(--paper), 0 6px 18px rgba(70, 75, 48, .25); margin: 0 auto 10px; transition: transform .3s; cursor: pointer; }
