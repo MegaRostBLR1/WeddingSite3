@@ -1,11 +1,28 @@
 // ---------- CONFIG ----------
+// rsvp.endpoint — URL Formspree / Getform / своего API (POST JSON).
+// rsvp.email — если endpoint пуст, отправка через FormSubmit.co на этот email.
+// Заполните хотя бы одно из полей, иначе форма честно покажет ошибку настройки.
 const WEDDING_CONFIG = Object.freeze({
     targetDate: '2026-09-26T15:00:00+03:00',
     mapUrl: 'https://www.openstreetmap.org/?mlat=55.678&mlon=37.28#map=14/55.678/37.28',
+    rsvp: Object.freeze({
+        endpoint: '',
+        email: ''
+    }),
     analytics: Object.freeze({
-        tournamentId: '85742c6d-0a4e-465f-aa53-f7722db1d5d7',
-        modelId: '40beda00-4711-4830-a3fb-2f417ee0f485'
+        enabled: false,
+        endpoint: '',
+        payload: Object.freeze({
+            tournamentId: '85742c6d-0a4e-465f-aa53-f7722db1d5d7',
+            modelId: '40beda00-4711-4830-a3fb-2f417ee0f485'
+        })
     })
+});
+
+const ATTEND_LABELS = Object.freeze({
+    yes: 'С радостью приду',
+    pair: 'Придём вдвоём',
+    no: 'Не смогу'
 });
 
 // ---------- NAV ----------
@@ -92,19 +109,40 @@ if (mapButton) {
 }
 
 // ---------- COUNTDOWN ----------
-// Wedding time is explicitly treated as Europe/Moscow (UTC+3), independent of visitor timezone.
 const target = Date.parse(WEDDING_CONFIG.targetDate);
 const countdownTimerIds = ['cd-d', 'cd-h', 'cd-m', 'cd-s'];
+const countdownLabelIds = ['cd-d-label', 'cd-h-label', 'cd-m-label', 'cd-s-label'];
+const countdownUnits = [
+    ['день', 'дня', 'дней'],
+    ['час', 'часа', 'часов'],
+    ['минута', 'минуты', 'минут'],
+    ['секунда', 'секунды', 'секунд']
+];
 let countdownInterval = null;
 
 function pad(value) {
     return String(value).padStart(2, '0');
 }
 
+function pluralRu(n, forms) {
+    const abs = Math.abs(Number(n)) % 100;
+    const n1 = abs % 10;
+    if (abs > 10 && abs < 20) return forms[2];
+    if (n1 > 1 && n1 < 5) return forms[1];
+    if (n1 === 1) return forms[0];
+    return forms[2];
+}
+
 function updateCountdown(values) {
     countdownTimerIds.forEach((id, index) => {
         const element = document.getElementById(id);
         if (element) element.textContent = values[index];
+
+        const label = document.getElementById(countdownLabelIds[index]);
+        if (label) {
+            const numeric = Number(String(values[index]).replace(/^0+(?=\d)/, '')) || 0;
+            label.textContent = pluralRu(numeric, countdownUnits[index]);
+        }
     });
 }
 
@@ -118,7 +156,7 @@ function tick() {
     }
 
     updateCountdown([
-        Math.floor(diff / 864e5),
+        String(Math.floor(diff / 864e5)),
         pad(Math.floor(diff / 36e5) % 24),
         pad(Math.floor(diff / 6e4) % 60),
         pad(Math.floor(diff / 1e3) % 60)
@@ -154,78 +192,235 @@ initializeReveal();
 // ---------- RSVP FORM ----------
 const form = document.getElementById('rsvpForm');
 const success = document.getElementById('rsvpSuccess');
+const formStatus = document.getElementById('formStatus');
+const submitButton = document.getElementById('rsvpSubmit');
 
 function setError(input, show) {
+    if (!input) return;
     input.classList.toggle('error', show);
-    const message = input.closest('.field').querySelector('.err-msg');
+    input.setAttribute('aria-invalid', show ? 'true' : 'false');
+    const field = input.closest('.field');
+    const message = field?.querySelector('.err-msg');
     if (message) message.style.display = show ? 'block' : 'none';
 }
 
-if (form && success) {
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
+function setFormStatus(message, isError) {
+    if (!formStatus) return;
+    if (!message) {
+        formStatus.hidden = true;
+        formStatus.textContent = '';
+        formStatus.classList.remove('is-error');
+        return;
+    }
+    formStatus.hidden = false;
+    formStatus.textContent = message;
+    formStatus.classList.toggle('is-error', Boolean(isError));
+}
+
+function normalizePhone(value) {
+    const digits = String(value || '').replace(/\D/g, '');
+    if (digits.length === 11 && (digits.startsWith('7') || digits.startsWith('8'))) {
+        return `7${digits.slice(1)}`;
+    }
+    if (digits.length === 10) {
+        return `7${digits}`;
+    }
+    return digits;
+}
+
+function isValidPhone(value) {
+    return /^7\d{10}$/.test(normalizePhone(value));
+}
+
+function collectPayload() {
+    const name = document.getElementById('fname')?.value.trim() || '';
+    const phoneRaw = document.getElementById('fphone')?.value.trim() || '';
+    const attend = form?.querySelector('input[name="attend"]:checked')?.value || '';
+    const drink = document.getElementById('fdrink')?.value || '';
+    const wish = document.getElementById('fwish')?.value.trim() || '';
+
+    return {
+        name,
+        phone: phoneRaw,
+        phoneNormalized: normalizePhone(phoneRaw),
+        attend,
+        attendLabel: ATTEND_LABELS[attend] || attend,
+        drink,
+        wish,
+        submittedAt: new Date().toISOString(),
+        source: 'WeddingSite3'
+    };
+}
+
+function validateForm() {
     let isValid = true;
+    let firstInvalid = null;
 
     const name = document.getElementById('fname');
-    if (name.value.trim().length < 2) {
+    if (!name || name.value.trim().length < 2) {
         setError(name, true);
         isValid = false;
+        firstInvalid = firstInvalid || name;
     } else {
         setError(name, false);
     }
 
     const phone = document.getElementById('fphone');
-    const digits = phone.value.replace(/\D/g, '');
-    if (digits.length < 10) {
+    if (!phone || !isValidPhone(phone.value)) {
         setError(phone, true);
         isValid = false;
+        firstInvalid = firstInvalid || phone;
     } else {
         setError(phone, false);
     }
 
-    const attend = form.querySelector('input[name="attend"]:checked');
+    const attend = form?.querySelector('input[name="attend"]:checked');
     const attendError = document.getElementById('attendErr');
     if (!attend) {
-        attendError.style.display = 'block';
+        if (attendError) attendError.style.display = 'block';
         isValid = false;
-    } else {
+        firstInvalid = firstInvalid || form?.querySelector('input[name="attend"]');
+    } else if (attendError) {
         attendError.style.display = 'none';
     }
 
-    if (!isValid) return;
+    if (firstInvalid) firstInvalid.focus();
+    return isValid;
+}
 
+async function sendRsvp(payload) {
+    const endpoint = (WEDDING_CONFIG.rsvp.endpoint || '').trim();
+    const email = (WEDDING_CONFIG.rsvp.email || '').trim();
+
+    if (endpoint) {
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+            throw new Error(`RSVP endpoint responded with ${response.status}`);
+        }
+        return 'endpoint';
+    }
+
+    if (email) {
+        const body = new FormData();
+        body.append('name', payload.name);
+        body.append('phone', payload.phone);
+        body.append('attend', payload.attendLabel);
+        body.append('drink', payload.drink || '—');
+        body.append('wish', payload.wish || '—');
+        body.append('_subject', `RSVP: ${payload.name}`);
+        body.append('_template', 'table');
+        body.append('_captcha', 'false');
+
+        const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(email)}`, {
+            method: 'POST',
+            headers: {Accept: 'application/json'},
+            body
+        });
+
+        if (!response.ok) {
+            throw new Error(`FormSubmit responded with ${response.status}`);
+        }
+        return 'email';
+    }
+
+    throw new Error('RSVP is not configured');
+}
+
+function showSuccess() {
+    if (!form || !success) return;
+    form.hidden = true;
     form.style.display = 'none';
+    success.hidden = false;
     success.style.display = 'block';
-});
+    document.getElementById('rsvpSuccessTitle')?.focus();
+}
 
-['fname', 'fphone'].forEach((id) => {
-    const element = document.getElementById(id);
-    element?.addEventListener('input', () => setError(element, false));
-});
+function resetFormView() {
+    if (!form || !success) return;
+    form.reset();
+    form.hidden = false;
+    form.style.display = 'block';
+    success.hidden = true;
+    success.style.display = 'none';
+    setFormStatus('');
+    ['fname', 'fphone'].forEach((id) => setError(document.getElementById(id), false));
+    const attendError = document.getElementById('attendErr');
+    if (attendError) attendError.style.display = 'none';
+}
 
-form.querySelectorAll('input[name="attend"]').forEach((radio) =>
-    radio.addEventListener('change', () => {
-        document.getElementById('attendErr').style.display = 'none';
-    })
-);
+if (form && success) {
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        setFormStatus('');
 
-const againButton = document.getElementById('againBtn');
-if (againButton) {
-    againButton.addEventListener('click', () => {
-        form.reset();
-        form.style.display = 'block';
-        success.style.display = 'none';
+        if (!validateForm()) return;
+
+        const payload = collectPayload();
+        const originalLabel = submitButton?.textContent || 'Отправить ответ';
+
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.textContent = 'Отправка…';
+        }
+
+        try {
+            await sendRsvp(payload);
+            showSuccess();
+        } catch (error) {
+            const notConfigured = error instanceof Error && error.message === 'RSVP is not configured';
+            setFormStatus(
+                notConfigured
+                    ? 'Отправка пока не настроена. Укажите WEDDING_CONFIG.rsvp.email или rsvp.endpoint в scripts/script.js.'
+                    : 'Не удалось отправить ответ. Проверьте соединение и попробуйте ещё раз.',
+                true
+            );
+        } finally {
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.textContent = originalLabel;
+            }
+        }
     });
-}
+
+    ['fname', 'fphone'].forEach((id) => {
+        const element = document.getElementById(id);
+        element?.addEventListener('input', () => setError(element, false));
+    });
+
+    form.querySelectorAll('input[name="attend"]').forEach((radio) =>
+        radio.addEventListener('change', () => {
+            const attendError = document.getElementById('attendErr');
+            if (attendError) attendError.style.display = 'none';
+        })
+    );
+
+    const againButton = document.getElementById('againBtn');
+    if (againButton) {
+        againButton.addEventListener('click', () => {
+            resetFormView();
+            document.getElementById('fname')?.focus();
+        });
+    }
 }
 
-// ---------- PRIVACY-FRIENDLY PAGE VIEW ----------
+// ---------- ANALYTICS (opt-in, absolute URL only) ----------
 function initializePageView() {
+    const {enabled, endpoint, payload} = WEDDING_CONFIG.analytics;
+    if (!enabled || !endpoint || !/^https?:\/\//i.test(endpoint)) return;
+
     try {
-        const request = fetch('/api/page-views', {
+        const request = fetch(endpoint, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(WEDDING_CONFIG.analytics),
+            body: JSON.stringify(payload),
             keepalive: true
         });
 
