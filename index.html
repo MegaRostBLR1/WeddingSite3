@@ -1,3 +1,4 @@
+<!doctype html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -11,7 +12,7 @@
 </head>
 <body>
 
-<nav id="nav">
+<nav id="nav" aria-label="Основная навигация">
     <a href="#hero" class="nav-logo">А &amp; М</a>
     <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
         <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
@@ -41,6 +42,7 @@
     </div>
 </header>
 
+<main>
 <section class="countdown-sec" id="countdown" aria-labelledby="countdown-title">
     <svg class="branch-divider" viewBox="0 0 130 24" fill="none" aria-hidden="true">
         <path d="M5 12 H125" stroke="#b9964f" stroke-width="0.7"></path>
@@ -175,17 +177,20 @@
             </div>
             <div class="field">
                 <label for="fwish">Пожелание молодожёнам</label>
-                <textarea id="fwish" rows="3" placeholder="Тёплые слова для нас…"></textarea>
+                <textarea id="fwish" rows="4" maxlength="500" placeholder="Тёплые слова для нас…" aria-describedby="fwishHint"></textarea>
+                <div class="field-hint" id="fwishHint">До 500 символов</div>
             </div>
             <button type="submit" class="btn btn-solid rsvp-submit">Отправить ответ</button>
         </form>
-        <div class="rsvp-success" id="rsvpSuccess">
+        <div class="rsvp-success" id="rsvpSuccess" role="status" aria-live="polite">
             <div class="script">Спасибо!</div>
             <p>Ваш ответ получен. Мы очень ждём встречи с вами 26 сентября 2026 года! 🕊️</p>
             <button class="btn btn-solid rsvp-again" id="againBtn" type="button">Заполнить ещё раз</button>
         </div>
     </div>
 </section>
+
+</main>
 
 <footer>
     <div class="script">Анна &amp; Михаил</div>
