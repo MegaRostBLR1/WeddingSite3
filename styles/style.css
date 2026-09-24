@@ -303,7 +303,13 @@ section { padding: clamp(72px, 9vw, 100px) clamp(20px, 6vw, 80px); position: rel
 }
 .field label { display: block; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--olive-dark); margin-bottom: 8px; }
 .field input, .field select, .field textarea { width: 100%; min-height: 46px; padding: 13px 14px; border: 1px solid #d8d2bf; background: #fffdf8; border-radius: 2px; font-family: 'Montserrat', sans-serif; font-size: .9rem; color: var(--ink); transition: border-color .3s, box-shadow .3s; outline: none; }
-.field textarea { resize: none; min-height: 120px; }
+#fwish,
+#rsvpForm textarea,
+.field textarea {
+    resize: none !important;
+    min-height: 120px;
+    max-width: 100%;
+}
 
 .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--olive); box-shadow: 0 0 0 3px rgba(124, 131, 84, .15); }
 .field input.error { border-color: var(--error); box-shadow: 0 0 0 3px rgba(180, 91, 75, .12); }
