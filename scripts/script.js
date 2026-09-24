@@ -4,7 +4,7 @@
 // Заполните хотя бы одно из полей, иначе форма честно покажет ошибку настройки.
 const WEDDING_CONFIG = Object.freeze({
     targetDate: '2026-09-26T15:00:00+03:00',
-    mapUrl: 'https://www.openstreetmap.org/?mlat=55.678&mlon=37.28#map=14/55.678/37.28',
+    mapUrl: 'https://yandex.ru/maps/?ll=37.28%2C55.678&z=14&pt=37.28,55.678&l=map',
     rsvp: Object.freeze({
         endpoint: '',
         email: ''
@@ -106,6 +106,12 @@ initializeNavigation();
 const mapButton = document.getElementById('mapButton');
 if (mapButton) {
     mapButton.href = WEDDING_CONFIG.mapUrl;
+}
+
+const mapFrame = document.getElementById('mapFrame');
+if (mapFrame && WEDDING_CONFIG.mapUrl) {
+    // Embed widget built from the same coordinates as mapUrl (lon,lat).
+    mapFrame.src = 'https://yandex.ru/map-widget/v1/?ll=37.28%2C55.678&z=14&pt=37.28,55.678,pm2rdm&l=map';
 }
 
 // ---------- COUNTDOWN ----------
