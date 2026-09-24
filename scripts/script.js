@@ -151,41 +151,7 @@ function initializeReveal() {
 
 initializeReveal();
 
-// ---------- ACCESSIBILITY ----------
-function initializeReducedMotion() {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const styleId = 'reduced-motion-style';
-    let style = document.getElementById(styleId);
-
-    if (!style) {
-        style = document.createElement('style');
-        style.id = styleId;
-        document.head.appendChild(style);
-    }
-
-    const applyReducedMotion = (event) => {
-        style.textContent = event.matches ? `
-            html { scroll-behavior: auto !important; }
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        ` : '';
-    };
-
-    applyReducedMotion(mediaQuery);
-
-    if (typeof mediaQuery.addEventListener === 'function') {
-        mediaQuery.addEventListener('change', applyReducedMotion);
-    }
-}
-
-initializeReducedMotion();
-
 // ---------- RSVP FORM ----------
-// Intentionally left unchanged: RSVP is excluded from this refactor.
 const form = document.getElementById('rsvpForm');
 const success = document.getElementById('rsvpSuccess');
 
@@ -195,6 +161,7 @@ function setError(input, show) {
     if (message) message.style.display = show ? 'block' : 'none';
 }
 
+if (form && success) {
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     let isValid = true;
@@ -233,7 +200,7 @@ form.addEventListener('submit', (event) => {
 
 ['fname', 'fphone'].forEach((id) => {
     const element = document.getElementById(id);
-    element.addEventListener('input', () => setError(element, false));
+    element?.addEventListener('input', () => setError(element, false));
 });
 
 form.querySelectorAll('input[name="attend"]').forEach((radio) =>
@@ -242,11 +209,15 @@ form.querySelectorAll('input[name="attend"]').forEach((radio) =>
     })
 );
 
-document.getElementById('againBtn').addEventListener('click', () => {
-    form.reset();
-    form.style.display = 'block';
-    success.style.display = 'none';
-});
+const againButton = document.getElementById('againBtn');
+if (againButton) {
+    againButton.addEventListener('click', () => {
+        form.reset();
+        form.style.display = 'block';
+        success.style.display = 'none';
+    });
+}
+}
 
 // ---------- PRIVACY-FRIENDLY PAGE VIEW ----------
 function initializePageView() {
