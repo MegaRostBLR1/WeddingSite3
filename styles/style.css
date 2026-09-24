@@ -5,7 +5,7 @@
     --olive: #7c8354;
     --olive-dark: #5d6340;
     --olive-deep: #464b30;
-    --gold: #b9964f;
+    --gold: #80652f;
     --gold-light: #d4b878;
     --ink: #4a4a3d;
     --shadow: 0 20px 60px rgba(70, 75, 48, .15);
@@ -150,6 +150,7 @@ nav.open .burger span:nth-child(2) { opacity: 0; }
 nav.open .burger span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
 .hero {
+    min-height: 100vh;
     min-height: 100svh;
     position: relative;
     display: flex;
@@ -270,7 +271,7 @@ footer { background: var(--olive-deep); color: #cfcab2; text-align: center; padd
 footer .script { font-size: 2.6rem; color: var(--gold-light); }
 footer p { font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; margin-top: 14px; }
 footer .footer-quote { letter-spacing: .35em; color: var(--gold-light); margin-top: 20px; }
-footer .small { font-size: .68rem; margin-top: 26px; letter-spacing: .1em; color: #9a9880; text-transform: none; }
+footer .small { font-size: .68rem; margin-top: 26px; letter-spacing: .1em; color: #c0baa0; text-transform: none; }
 .reveal { opacity: 0; transform: translateY(36px); transition: opacity .8s ease, transform .8s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 .corner { position: absolute; width: 150px; opacity: .6; pointer-events: none; }
@@ -336,6 +337,7 @@ footer .small { font-size: .68rem; margin-top: 26px; letter-spacing: .1em; color
 
 @media (max-width: 600px) {
     .hero {
+        min-height: 100vh;
         min-height: 100svh;
         padding: 100px 20px 70px;
     }
