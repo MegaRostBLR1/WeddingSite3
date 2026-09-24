@@ -1,8 +1,16 @@
+<!doctype html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Свадебное приглашение Анны и Михаила — 26 сентября 2026 года.">
+    <meta name="theme-color" content="#5d6340">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:title" content="Анна & Михаил — Свадьба">
+    <meta property="og:description" content="Свадебное приглашение Анны и Михаила — 26 сентября 2026 года.">
+    <meta property="og:image" content="images/story_img.jpg">
+    <meta name="twitter:card" content="summary_large_image">
     <title>Анна &amp; Михаил — Свадьба</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +19,9 @@
 </head>
 <body>
 
-<nav id="nav">
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+
+<nav id="nav" aria-label="Основная навигация">
     <a href="#hero" class="nav-logo">А &amp; М</a>
     <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
         <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
@@ -41,6 +51,7 @@
     </div>
 </header>
 
+<main id="main">
 <section class="countdown-sec" id="countdown" aria-labelledby="countdown-title">
     <svg class="branch-divider" viewBox="0 0 130 24" fill="none" aria-hidden="true">
         <path d="M5 12 H125" stroke="#b9964f" stroke-width="0.7"></path>
@@ -50,10 +61,10 @@
     </svg>
     <p class="sec-eyebrow" id="countdown-title">До нашего дня осталось</p>
     <div class="countdown" aria-live="polite" aria-atomic="true">
-        <div class="cd-box"><div class="cd-num" id="cd-d">30</div><div class="cd-label">дней</div></div>
-        <div class="cd-box"><div class="cd-num" id="cd-h">15</div><div class="cd-label">часов</div></div>
-        <div class="cd-box"><div class="cd-num" id="cd-m">25</div><div class="cd-label">минут</div></div>
-        <div class="cd-box"><div class="cd-num" id="cd-s">17</div><div class="cd-label">секунд</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-d">—</div><div class="cd-label" id="cd-d-label">дней</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-h">—</div><div class="cd-label" id="cd-h-label">часов</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-m">—</div><div class="cd-label" id="cd-m-label">минут</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-s">—</div><div class="cd-label" id="cd-s-label">секунд</div></div>
     </div>
 </section>
 
@@ -116,11 +127,11 @@
                 <h3>Усадьба «Оливковая роща»</h3>
                 <p>Московская область, Одинцовский район,<br>пос. Загорье, ул. Садовая, 12</p>
                 <p>Для гостей организован трансфер от м. Молодёжная в 13:30. Парковка на территории — бесплатная.</p>
-                <p>Вопросы — организатору Екатерине:<br>+7 (900) 123-45-67</p>
+                <p>Вопросы — организатору Екатерине:<br><a class="loc-phone" href="tel:+79001234567">+7 (900) 123-45-67</a></p>
                 <a class="btn" id="mapButton" href="https://www.openstreetmap.org/?mlat=55.678&amp;mlon=37.28#map=14/55.678/37.28" target="_blank" rel="noopener noreferrer">Открыть карту</a>
             </div>
             <div class="loc-map">
-                <iframe title="Карта места проведения" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=37.20%2C55.64%2C37.36%2C55.72&amp;layer=mapnik&amp;marker=55.678%2C37.28"></iframe>
+                <iframe title="Карта места проведения" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=37.20%2C55.64%2C37.36%2C55.72&amp;layer=mapnik&amp;marker=55.678%2C37.28"></iframe>
             </div>
         </div>
     </div>
@@ -149,43 +160,53 @@
         <form id="rsvpForm" novalidate>
             <div class="field">
                 <label for="fname">Имя и фамилия *</label>
-                <input type="text" id="fname" placeholder="Например: Ирина Соколова" autocomplete="name">
+                <input type="text" id="fname" name="name" placeholder="Например: Ирина Соколова" autocomplete="name" required minlength="2" maxlength="120">
                 <div class="err-msg">Пожалуйста, укажите ваше имя</div>
             </div>
             <div class="field">
                 <label for="fphone">Телефон *</label>
-                <input type="tel" id="fphone" placeholder="+7 (___) ___-__-__" autocomplete="tel">
+                <input type="tel" id="fphone" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" inputmode="tel" required>
                 <div class="err-msg">Укажите корректный номер телефона</div>
             </div>
             <div class="field">
-                <label>Сможете ли вы присутствовать? *</label>
-                <div class="radio-row">
-                    <div class="chip"><input type="radio" name="attend" id="a-yes" value="yes"><label for="a-yes">С радостью приду</label></div>
-                    <div class="chip"><input type="radio" name="attend" id="a-pair" value="pair"><label for="a-pair">Придём вдвоём</label></div>
-                    <div class="chip"><input type="radio" name="attend" id="a-no" value="no"><label for="a-no">Не смогу</label></div>
-                </div>
+                <fieldset class="attend-fieldset">
+                    <legend>Сможете ли вы присутствовать? *</legend>
+                    <div class="radio-row">
+                        <div class="chip"><input type="radio" name="attend" id="a-yes" value="yes" required><label for="a-yes">С радостью приду</label></div>
+                        <div class="chip"><input type="radio" name="attend" id="a-pair" value="pair"><label for="a-pair">Придём вдвоём</label></div>
+                        <div class="chip"><input type="radio" name="attend" id="a-no" value="no"><label for="a-no">Не смогу</label></div>
+                    </div>
+                </fieldset>
                 <div class="err-msg" id="attendErr">Выберите один из вариантов</div>
             </div>
             <div class="field">
                 <label for="fdrink">Предпочтения по напиткам</label>
-                <select id="fdrink">
+                <select id="fdrink" name="drink">
                     <option value="">— выберите —</option>
-                    <option>Вино белое</option><option>Вино красное</option><option>Шампанское</option><option>Крепкие напитки</option><option>Безалкогольное</option>
+                    <option value="Вино белое">Вино белое</option>
+                    <option value="Вино красное">Вино красное</option>
+                    <option value="Шампанское">Шампанское</option>
+                    <option value="Крепкие напитки">Крепкие напитки</option>
+                    <option value="Безалкогольное">Безалкогольное</option>
                 </select>
             </div>
             <div class="field">
                 <label for="fwish">Пожелание молодожёнам</label>
-                <textarea id="fwish" rows="3" placeholder="Тёплые слова для нас…"></textarea>
+                <textarea id="fwish" name="wish" rows="4" maxlength="500" placeholder="Тёплые слова для нас…" aria-describedby="fwishHint"></textarea>
+                <div class="field-hint" id="fwishHint">До 500 символов</div>
             </div>
-            <button type="submit" class="btn btn-solid rsvp-submit">Отправить ответ</button>
+            <p class="form-status" id="formStatus" role="alert" hidden></p>
+            <button type="submit" class="btn btn-solid rsvp-submit" id="rsvpSubmit">Отправить ответ</button>
         </form>
-        <div class="rsvp-success" id="rsvpSuccess">
-            <div class="script">Спасибо!</div>
-            <p>Ваш ответ получен. Мы очень ждём встречи с вами 26 сентября 2026 года! 🕊️</p>
+        <div class="rsvp-success" id="rsvpSuccess" role="status" aria-live="polite" hidden>
+            <div class="script" tabindex="-1" id="rsvpSuccessTitle">Спасибо!</div>
+            <p id="rsvpSuccessText">Ваш ответ получен. Мы очень ждём встречи с вами 26 сентября 2026 года! 🕊️</p>
             <button class="btn btn-solid rsvp-again" id="againBtn" type="button">Заполнить ещё раз</button>
         </div>
     </div>
 </section>
+
+</main>
 
 <footer>
     <div class="script">Анна &amp; Михаил</div>
